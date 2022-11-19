@@ -18,3 +18,15 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+
+.country-info > h2{
+  display: inline-block;
+}
+.country-info > h4{
+ margin: 2px;
+}
+
+.count{
+  display: flex;
+  gap: 10px;
+}
