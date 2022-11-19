@@ -19,12 +19,7 @@ body {
   margin-bottom: 16px;
 }
 
-.country-info > h2{
-  display: inline-block;
-}
-.country-info > h4{
- margin: 2px;
-}
+
 
 .count{
   display: flex;
