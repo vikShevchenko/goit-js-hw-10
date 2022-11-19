@@ -1,6 +1,6 @@
 import './css/styles.css';
 
-import fetchCountries from "./fetchCountries.js"
+
 
 const debounce = require('lodash.debounce');
 
