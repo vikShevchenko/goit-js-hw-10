@@ -19,9 +19,54 @@ body {
   margin-bottom: 16px;
 }
 
-
-
 .count{
   display: flex;
+  align-items: center;
   gap: 10px;
+  margin: 2px;
+}
+h4{
+  margin: 8px;
+}
+
+.country-list{
+  list-style: none;
+  padding-left: 0px;
+
+}
+
+
+.country-list > li{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+img{
+  margin: 0px;
+  height: 20px;
+  width: 30px;
+}
+.norm{
+  width: 280px;
+  background-color: rgba(37, 192, 211, 1);
+  border-radius: 8px;
+  display: inline-block;
+  padding: 10px;
+  margin-left: 60px;
+  position: relative;
+  top: 12px;
+  color: #fafafa;
+  top: -85px;
+  left: 230px;
+}
+.spanErr{
+background-color: red;
+color: #fafafa;
+width: 300px;
+border-radius: 8px;
+display: inline-block;
+padding: 10px;
+position: relative;
+top: -85px;
+left: 290px;
 }
