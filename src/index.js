@@ -22,44 +22,46 @@ refs.inputForm.addEventListener(
   )
 
 );
+
+import fetchCountries from "fetchCountrries";
 //-------------------------------------------------------
 
-function fetchCountries(name) {
-  fetch(`https://restcountries.com/v3.1/name/${name}`)
-    .then(name => {
-      if (!name.ok) {
+// function fetchCountries(name) {
+//   fetch(`https://restcountries.com/v3.1/name/${name}`)
+//     .then(name => {
+//       if (!name.ok) {
 
-        throw new Error(name.statusText);
+//         throw new Error(name.statusText);
 
-      }
+//       }
 
-      return name.json();
-    })
-    .then(data => {
+//       return name.json();
+//     })
+//     .then(data => {
 
 
-      if (data.length > 10) {
+//       if (data.length > 10) {
       
-        lotOfList();
+//         lotOfList();
 
-      } else if (data.length < 10 && data.length != 1) {
+//       } else if (data.length < 10 && data.length != 1) {
        
-        showList(data);
+//         showList(data);
         
 
-      } else if (data.length == 1) {
+//       } else if (data.length == 1) {
         
-        countryCard(data);
-        refs.countryList.style.display = "none";
+//         countryCard(data);
+//         refs.countryList.style.display = "none";
 
-      }
+//       }
 
 
-    }).catch(err => {
-      console.log(err);
-      notFounde();
-    })
-}
+//     }).catch(err => {
+//       console.log(err);
+//       notFounde();
+//     })
+// }
 //-------------------------------------------------------
 function notFounde() {         //Not found
   
