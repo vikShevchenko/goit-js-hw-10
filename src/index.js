@@ -23,7 +23,7 @@ refs.inputForm.addEventListener(
 
 );
 
-import fetchCountries from "fetchCountrries";
+import fetchCountries from "./fetchCountries";
 //-------------------------------------------------------
 
 // function fetchCountries(name) {
