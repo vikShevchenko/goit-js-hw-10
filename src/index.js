@@ -23,7 +23,7 @@ function countries() {
         lotOfList();
       } else if (data.length < 10 && data.length != 1) {
         showList(data);
-        refs.countryInfo.style.display = 'none'; //!
+        refs.countryInfo.style.display = 'none'; 
         refs.countryList.style.display = 'block';
       } else if (data.length === 1) {
         countryCard(data);
