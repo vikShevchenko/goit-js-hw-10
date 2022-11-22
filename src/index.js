@@ -1,90 +1,67 @@
 import './css/styles.css';
-//---------------------------------------------------------
+import fetchCountries from './fetchCountries';
+import Notiflix from 'notiflix';
 const debounce = require('lodash.debounce');
+const DEBOUNCE_DELAY = 300;
+
 //---------------------------------------------------------
 const refs = {
   inputForm: document.getElementById('search-box'),
   countryInfo: document.querySelector('.country-info'),
   countryList: document.querySelector('.country-list'),
 };
+
 //--------------------------------------------------------
-const DEBOUNCE_DELAY = 300;
-//--------------------------------------------------------
-refs.inputForm.addEventListener(
-  'input',
-  debounce(
-    (countries = () => {
-      const name = refs.inputForm.value;
+refs.inputForm.addEventListener('input', debounce(countries), DEBOUNCE_DELAY);
 
-      fetchCountries(name);
-    }),
-    DEBOUNCE_DELAY
-  )
+function countries() {
+  name = refs.inputForm.value;
 
-);
-
-import fetchCountries from "./fetchCountries";
-//-------------------------------------------------------
-
-// function fetchCountries(name) {
-//   fetch(`https://restcountries.com/v3.1/name/${name}`)
-//     .then(name => {
-//       if (!name.ok) {
-
-//         throw new Error(name.statusText);
-
-//       }
-
-//       return name.json();
-//     })
-//     .then(data => {
-
-
-//       if (data.length > 10) {
-      
-//         lotOfList();
-
-//       } else if (data.length < 10 && data.length != 1) {
-       
-//         showList(data);
-        
-
-//       } else if (data.length == 1) {
-        
-//         countryCard(data);
-//         refs.countryList.style.display = "none";
-
-//       }
-
-
-//     }).catch(err => {
-//       console.log(err);
-//       notFounde();
-//     })
-// }
-//-------------------------------------------------------
-function notFounde() {         //Not found
-  
-  refs.countryList.innerHTML = `<span class = "spanErr"> Oops, there is no country with that name"</span>`
-  
+  fetchCountries(name)
+    .then(data => {
+      if (data.length > 10) {
+        lotOfList();
+      } else if (data.length < 10 && data.length != 1) {
+        showList(data);
+        refs.countryInfo.style.display = 'none'; //!
+        refs.countryList.style.display = 'block';
+      } else if (data.length === 1) {
+        countryCard(data);
+        refs.countryList.style.display = 'none';
+        refs.countryInfo.style.display = 'block';
+      }
+    })
+    .catch(err => {
+      refs.countryList.style.display = 'none';
+      console.log(err);
+      notFounde();
+    });
 }
 
-function lotOfList()         // List
-{
+//-------------------------------------------------------
+function notFounde() {
+  //Not found
 
-  refs.countryList.innerHTML = `<span class = "norm" >Too many matches found. Please enter a more specific name.</span>`
- 
+  Notiflix.Notify.failure('Oops, there is no country with that name');
 }
 
-function showList(data) {     //showListCauntrys
- 
-  const marc = data.map(item => `<li><img src= ${item.flags.svg}> ${item.name.official}</li>`).join("");
+function lotOfList() {
+  // List
+  Notiflix.Notify.info(
+    'Too many matches found. Please enter a more specific name'
+  );
+}
+
+function showList(data) {
+  //showListCauntrys
+  const marc = data
+    .map(item => `<li><img src= ${item.flags.svg}> ${item.name.official}</li>`)
+    .join('');
   refs.countryList.innerHTML = marc;
-  
 }
 
-function countryCard(data) {   //showCauntryCard
-
+function countryCard(data) {
+  //showCauntryCard
   const flag = data[0].flags.svg;
   const officialName = data[0].name.official;
   const capital = data[0].capital;
@@ -99,11 +76,5 @@ function countryCard(data) {   //showCauntryCard
     <h4>Capital: ${capital}</h4>
     <h4>Population: ${population}</h4>
     <h4>Lenguages: ${language}</h4>
-    `
-    
+    `;
 }
-  //------------------------------------------------------
-
-   
-
-
